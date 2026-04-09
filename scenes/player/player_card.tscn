@@ -1,0 +1,141 @@
+[gd_scene load_steps=11 format=3 uid="uid://j3eoltmne1yc"]
+
+[ext_resource type="Script" uid="uid://dkiyljraxqeod" path="res://scripts/player/player_card.gd" id="1_02cqd"]
+[ext_resource type="Texture2D" uid="uid://ccmwcpvoe82bs" path="res://icon.svg" id="1_cqxa1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kg30u"]
+bg_color = Color(0, 0, 0, 0.7176471)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6u4wf"]
+bg_color = Color(0.14044744, 0.14044747, 0.14044738, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.29803923, 1, 0.7411765, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ktuci"]
+bg_color = Color(0.80049086, 0.80049074, 0.80049074, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.29803923, 1, 0.7411765, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8f3a2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqxa1"]
+bg_color = Color(0.6, 0.6, 0.6, 0.3764706)
+draw_center = false
+border_color = Color(0.9428228, 0.94282264, 0.94282264, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02cqd"]
+draw_center = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mnqni"]
+bg_color = Color(0.22745098, 0.22745098, 0.22745098, 0.47843137)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_02cqd"]
+Button/styles/focus = SubResource("StyleBoxEmpty_8f3a2")
+Button/styles/hover = SubResource("StyleBoxFlat_cqxa1")
+Button/styles/normal = SubResource("StyleBoxFlat_02cqd")
+Button/styles/pressed = SubResource("StyleBoxFlat_mnqni")
+
+[node name="PlayerCard" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -125.0
+offset_right = -1835.0
+offset_bottom = -955.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_02cqd")
+
+[node name="Shadow" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 165.0
+offset_bottom = 245.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_kg30u")
+
+[node name="CardBody" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 165.0
+offset_bottom = 245.0
+theme_override_constants/margin_left = 0
+
+[node name="Panel" type="Panel" parent="CardBody"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6u4wf")
+
+[node name="MarginContainer" type="MarginContainer" parent="CardBody"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CardBody/MarginContainer"]
+layout_mode = 2
+
+[node name="CardTitle" type="MarginContainer" parent="CardBody/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Panel" type="Panel" parent="CardBody/MarginContainer/VBoxContainer/CardTitle"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ktuci")
+
+[node name="MarginContainer" type="MarginContainer" parent="CardBody/MarginContainer/VBoxContainer/CardTitle"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="Label" type="Label" parent="CardBody/MarginContainer/VBoxContainer/CardTitle/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 1, 1)
+text = "My Card"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CardIcon" type="MarginContainer" parent="CardBody/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+
+[node name="TextureRect" type="TextureRect" parent="CardBody/MarginContainer/VBoxContainer/CardIcon"]
+layout_mode = 2
+texture = ExtResource("1_cqxa1")
+
+[node name="ExtraInfo" type="MarginContainer" parent="CardBody/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Button" type="Button" parent="CardBody"]
+layout_mode = 2
+theme = SubResource("Theme_02cqd")
+
+[connection signal="button_down" from="CardBody/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="CardBody/Button" to="." method="_on_button_button_up"]

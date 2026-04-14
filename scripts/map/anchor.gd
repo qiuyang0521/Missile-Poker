@@ -56,8 +56,8 @@ func _set_all_grid_visible(visible: bool) -> void:
 	var parent = get_parent()
 	if parent:
 		for child in parent.get_children():
-			# 匹配原始 Anchor 和克隆的 Anchor_行_列
-			if child.name == "Anchor" or child.name.begins_with("Anchor_"):
+			# 仅匹配克隆体 Anchor_行_列，跳过原始 Anchor 节点（永久隐藏）
+			if child.name.begins_with("Anchor_"):
 				# 确保子节点及其 Panel 都可见
 				child.visible = visible
 				# 递归设置所有子节点的可见性

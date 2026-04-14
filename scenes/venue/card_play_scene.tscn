@@ -1,13 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv7jgi581cbtt"]
+[gd_scene load_steps=6 format=3 uid="uid://dv7jgi581cbtt"]
 
 [ext_resource type="PackedScene" uid="uid://j3eoltmne1yc" path="res://scenes/player/player_card.tscn" id="1_1oia7"]
 [ext_resource type="PackedScene" uid="uid://df7dp2g3a4hl0" path="res://scenes/cards/start_card.tscn" id="2_ofw34"]
 [ext_resource type="PackedScene" uid="uid://dgj22ovamvqbn" path="res://scenes/venue/anchor.tscn" id="3_dn68d"]
+[ext_resource type="Script" path="res://scripts/venue/play_scene_animation.gd" id="4_anim1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofw34"]
 bg_color = Color(0.18431373, 0.16862746, 0.10980392, 1)
 
 [node name="CardPlayScene" type="Node2D"]
+rotation = 0.0030614862
+script = ExtResource("4_anim1")
 
 [node name="BackGround" type="Panel" parent="."]
 offset_left = -960.0
@@ -24,8 +27,8 @@ offset_bottom = 40.0
 
 [node name="StartCard" parent="cards" instance=ExtResource("2_ofw34")]
 layout_mode = 1
-offset_right = 80.0
-offset_bottom = 40.0
+offset_right = 120.0
+offset_bottom = 80.0
 
 [node name="Card" parent="cards" instance=ExtResource("1_1oia7")]
 visible = false
@@ -33,6 +36,12 @@ layout_mode = 1
 offset_right = -125.0
 offset_bottom = -165.0
 pivot_offset = Vector2(85, 125)
+
+[node name="PlayerCard" parent="cards" instance=ExtResource("1_1oia7")]
+visible = false
+layout_mode = 1
+offset_right = -85.0
+offset_bottom = -125.0
 
 [node name="Anchor" parent="." instance=ExtResource("3_dn68d")]
 visible = false
@@ -45,4 +54,4 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
+zoom = Vector2(4.5, 4.5)

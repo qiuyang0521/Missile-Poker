@@ -87,22 +87,21 @@ func _wake_up_card() -> void:
 	print("Card waking up...")
 	card_current_state = CardState.IDLE
 
-# 处理拖拽状态（包含抬起效果：点击时 CardBody 向左上移动露出阴影）
+# 处理拖拽状态（基类实现：CardBody 抬起 + 鼠标平滑跟随 + 速度计算）
 func _process_dragging(delta: float) -> void:
-	# 平滑移动 CardBody 到抬起位置 (0, 0)，露出阴影
+	# 平滑移动 CardBody 到抬起位置，露出阴影
 	if card_body:
 		card_body.position = card_body.position.lerp(LIFT_OFFSET, LIFT_SPEED * delta)
 	
 	var target_position = get_global_mouse_position() - drag_offset
 	global_position = global_position.lerp(target_position, drag_smoothness)  # 使用 lerp 实现平滑跟随
-	velocity = (target_position - global_position) * drag_smoothness / delta * 0.5   # 计算当前速度（用于松开时的惯性）
+	velocity = (target_position - global_position) * drag_smoothness / delta * 0.5  # 计算当前速度（用于松开时的惯性）
 	
-	# 拖拽时显示 anchor 节点
-	_show_anchor(true)
+	_on_drag_frame(delta)  # 调用扩展接口
 
-# 处理返回吸附点状态（带物理效果）
+# 处理返回吸附点状态（基类实现：弹簧物理回弹）
 func _process_returning(delta: float) -> void:
-	# 先平滑恢复 CardBody 到默认位置 (5, 5)
+	# 先平滑恢复 CardBody 到默认位置
 	if card_body:
 		card_body.position = card_body.position.lerp(DEFAULT_OFFSET, LIFT_SPEED * delta)
 	
@@ -112,18 +111,27 @@ func _process_returning(delta: float) -> void:
 	if distance < 1.0:  # 如果距离非常近，直接设置位置并停止
 		global_position = anchor_position
 		velocity = Vector2.ZERO
-		# 确保 CardBody 完全回到默认位置
 		if card_body:
 			card_body.position = DEFAULT_OFFSET
 		return
 	
-	var spring_force = to_anchor * spring_stiffness  # 弹簧力：F = k * x (胡克定律)
+	var spring_force = to_anchor * spring_stiffness  # 弹簧力：F = k * x（胡克定律）
 	velocity += spring_force
 	velocity *= damping  # 应用阻尼（模拟空气阻力）
 	global_position += velocity * delta * 60.0  # 更新位置
 	
 	if abs(to_anchor.y) > 10:  # 添加轻微的重力效果，让运动更自然
 		velocity.y += 50 * delta
+	
+	_on_return_frame(delta)  # 调用扩展接口
+
+# 拖拽状态帧扩展接口（子类重写此方法以添加额外行为）
+func _on_drag_frame(delta: float) -> void:
+	_show_anchor(true)  # 默认：显示 anchor
+
+# 返回状态帧扩展接口（子类重写此方法以添加额外行为）
+func _on_return_frame(delta: float) -> void:
+	pass  # 默认：无额外操作
 
 # 处理静止状态（松开按钮后停止在当前位置）
 func _process_idle(delta: float) -> void:

@@ -1,14 +1,26 @@
-[gd_scene format=3 uid="uid://clvmw8vibk6kd"]
+[gd_scene load_steps=3 format=3 uid="uid://clvmw8vibk6kd"]
+
+[ext_resource type="Texture2D" uid="uid://xt2i3wdqo0g4" path="res://assets/ui/letter_card/大写/M.png" id="1_l8ffk"]
+[ext_resource type="Theme" uid="uid://r80epraro1ig" path="res://assets/temp/card.tres" id="2_b4fh5"]
 
 [node name="ControlCard" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -1760.0
+offset_bottom = -840.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 120.0
+offset_bottom = 180.0
+texture = ExtResource("1_l8ffk")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 240.0
+theme = ExtResource("2_b4fh5")

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://j3eoltmne1yc" path="res://scenes/player/player_card.tscn" id="1_1oia7"]
 [ext_resource type="PackedScene" uid="uid://df7dp2g3a4hl0" path="res://scenes/cards/start_card.tscn" id="2_ofw34"]
 [ext_resource type="PackedScene" uid="uid://dgj22ovamvqbn" path="res://scenes/venue/anchor.tscn" id="3_dn68d"]
-[ext_resource type="Script" path="res://scripts/venue/play_scene_animation.gd" id="4_anim1"]
+[ext_resource type="Script" uid="uid://cm06pikutderw" path="res://scripts/venue/play_scene_animation.gd" id="4_anim1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofw34"]
 bg_color = Color(0.18431373, 0.16862746, 0.10980392, 1)

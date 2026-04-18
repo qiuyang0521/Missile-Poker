@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://df7dp2g3a4hl0"]
+[gd_scene load_steps=7 format=3 uid="uid://df7dp2g3a4hl0"]
 
 [ext_resource type="Theme" uid="uid://r80epraro1ig" path="res://assets/temp/card.tres" id="1_kwedl"]
 [ext_resource type="Script" uid="uid://b2k1jvg1f0e3" path="res://scripts/item/start_card.gd" id="1_start"]
@@ -26,6 +26,9 @@ border_width_bottom = 2
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d672l"]
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
 [node name="StartCard" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -37,7 +40,7 @@ offset_right = -1760.0
 offset_bottom = -960.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(80, 120)
+pivot_offset = Vector2(160, 120)
 script = ExtResource("1_start")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -83,6 +86,14 @@ theme_override_font_sizes/font_size = 48
 text = "Start"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Cover" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -122.0
+offset_right = 320.0
+offset_bottom = 362.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_d672l")
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0

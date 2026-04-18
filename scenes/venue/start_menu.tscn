@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b8txi43yp5277"]
 
-[ext_resource type="PackedScene" uid="uid://clvmw8vibk6kd" path="res://scenes/cards/control_card.tscn" id="1_502eo"]
+[ext_resource type="Script" uid="uid://dh0f3fl18p3wg" path="res://scripts/venue/start_menu.gd" id="1_rtxbq"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -9,10 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rtxbq")
 
-[node name="ControlCard" parent="." instance=ExtResource("1_502eo")]
-layout_mode = 1
-offset_left = 225.0
-offset_top = 390.0
-offset_right = -1535.0
-offset_bottom = -450.0
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(960, 540)

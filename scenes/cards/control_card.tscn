@@ -1,19 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://clvmw8vibk6kd"]
+[gd_scene load_steps=7 format=3 uid="uid://clvmw8vibk6kd"]
 
+[ext_resource type="Shader" uid="uid://c8s08tkwsabqx" path="res://assets/shader/fake3d.gdshader" id="1_36um2"]
+[ext_resource type="Script" uid="uid://16evjt7aod3i" path="res://scripts/item/control_card.gd" id="1_72m16"]
 [ext_resource type="Texture2D" uid="uid://xt2i3wdqo0g4" path="res://assets/ui/letter_card/大写/M.png" id="1_l8ffk"]
 [ext_resource type="Theme" uid="uid://r80epraro1ig" path="res://assets/temp/card.tres" id="2_b4fh5"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_front"]
+shader = ExtResource("1_36um2")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_back"]
+shader = ExtResource("1_36um2")
+shader_parameter/fov = 90.0
+shader_parameter/cull_back = true
+shader_parameter/y_rot = -90.0
+shader_parameter/x_rot = 0.0
+shader_parameter/inset = 0.0
+
 [node name="ControlCard" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1760.0
-offset_bottom = -840.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+offset_right = 120.0
+offset_bottom = 180.0
+script = ExtResource("1_72m16")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="FrontTextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_front")
+layout_mode = 0
+offset_right = 120.0
+offset_bottom = 180.0
+texture = ExtResource("1_l8ffk")
+
+[node name="BackTextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_back")
 layout_mode = 0
 offset_right = 120.0
 offset_bottom = 180.0

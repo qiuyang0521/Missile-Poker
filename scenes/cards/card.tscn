@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgiicfi546sa5"]
+
+[ext_resource type="Theme" uid="uid://r80epraro1ig" path="res://assets/temp/card.tres" id="1_45qsb"]
+[ext_resource type="Script" uid="uid://dyprhi2gd5k08" path="res://scripts/item/card.gd" id="2_card"]
+[ext_resource type="Texture2D" uid="uid://b71o02lbjo27b" path="res://assets/card/瓶子.png" id="2_jl6rh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jl6rh"]
+bg_color = Color(0.0316549, 0.0316549, 0.031654898, 0.49411765)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 240.0
+script = ExtResource("2_card")
+
+[node name="Shadow" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 406.0
+offset_bottom = 600.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jl6rh")
+
+[node name="CardBody" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 471.0
+offset_bottom = 681.0
+
+[node name="TextureRect" type="TextureRect" parent="CardBody"]
+layout_mode = 2
+texture = ExtResource("2_jl6rh")
+
+[node name="Button" type="Button" parent="CardBody"]
+layout_mode = 2
+theme = ExtResource("1_45qsb")
+
+[connection signal="button_down" from="CardBody/Button" to="." method="_on_button_button_down"]
+[connection signal="button_up" from="CardBody/Button" to="." method="_on_button_button_up"]

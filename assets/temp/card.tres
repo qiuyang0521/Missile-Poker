@@ -5,10 +5,6 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cqxa1"]
 bg_color = Color(0.6, 0.6, 0.6, 0.3764706)
 draw_center = false
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
 border_color = Color(0.9428228, 0.94282264, 0.94282264, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
